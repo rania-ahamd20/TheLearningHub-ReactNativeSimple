@@ -7,7 +7,7 @@ const CreateCourse = ({navigation}: any) => {
   const handleCreate = () => {
     axios
       .post(
-        'https://50cf-92-253-117-0.ngrok-free.app/api/Course',
+        'https://2f1b-92-253-117-0.ngrok-free.app/api/Course',
         {
           courseid: Math.floor(Math.random() * 100),
           coursename: name,

@@ -8,7 +8,7 @@ const GetCourses = () => {
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
-    fetch('https://50cf-92-253-117-0.ngrok-free.app/api/Course')
+    fetch('https://2f1b-92-253-117-0.ngrok-free.app/api/Course')
       .then(response => response.json())
       .then(responseJson => {
         setDataSource(responseJson);
@@ -19,7 +19,7 @@ const GetCourses = () => {
   const handleDelete = id => {
     axios
       .delete(
-        `https://50cf-92-253-117-0.ngrok-free.app/api/Course/DeleteCourse/${id}`,
+        `https://2f1b-92-253-117-0.ngrok-free.app/api/Course/DeleteCourse/${id}`,
       )
       .then(() => {
         alert('Course Deleted Successfully');

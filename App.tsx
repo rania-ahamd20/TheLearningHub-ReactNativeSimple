@@ -2,16 +2,20 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Button} from 'react-native';
 import CreateCourse from './Screens/CreateCourse';
 import GetCourses from './Screens/GetCourses';
 import MainPage from './Screens/MainPage';
 import UpdateCourse from './Screens/UpdateCourse';
+import login from './Screens/login';
+import Course from './Screens/Course';
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Login Page" component={login} />
+        <Stack.Screen name="Course" component={Course} />
         <Stack.Screen name="MainPage" component={MainPage} />
         <Stack.Screen
           name="CreateCourse"
