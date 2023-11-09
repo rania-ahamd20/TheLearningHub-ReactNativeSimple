@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { TextInput, Text, View, Button, StyleSheet } from 'react-native';
 import axios from 'axios';
 
-const CreateCourse = () => {
+const CreateCourse = ({navigation}: any) => {
   const handleCreate = () => {
     axios
       .post(
-        'https://52ba-92-253-117-0.ngrok-free.app/api/Course',
+        'https://50cf-92-253-117-0.ngrok-free.app/api/Course',
         {
           courseid: Math.floor(Math.random() * 100),
           coursename: name,
@@ -21,6 +21,7 @@ const CreateCourse = () => {
       .then((res) => {
         console.log(res.data);
         alert('Course Created Successfully');
+        navigation.navigate('GetCourses');
       })
       .catch((err) => console.log(err));
   };

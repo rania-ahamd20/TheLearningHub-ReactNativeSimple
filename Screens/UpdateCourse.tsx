@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { TextInput, Text, View, Button, StyleSheet } from 'react-native';
 import axios from 'axios';
 
-const UpdateCourse = () => {
+const UpdateCourse = ({navigation}: any) => {
   const handleUpdate = () => {
     axios
       .put(
-        'https://52ba-92-253-117-0.ngrok-free.app/api/Course/Update',
+        'https://50cf-92-253-117-0.ngrok-free.app/api/Course/Update',
         {
           courseid: id,
           coursename: name,
@@ -21,6 +21,7 @@ const UpdateCourse = () => {
       .then((res) => {
         console.log(res.data);
         alert('Course Updated Successfully');
+        navigation.navigate('GetCourses');
       })
       .catch((err) => console.log(err));
   };

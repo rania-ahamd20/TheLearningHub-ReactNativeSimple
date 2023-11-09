@@ -1,28 +1,25 @@
 /* eslint-disable prettier/prettier */
-import React, {Component} from 'react';
+import React, { useState, useEffect} from 'react';
 import {FlatList, View, Text, StyleSheet, Button} from 'react-native';
 import {Appbar, Card, Provider} from 'react-native-paper';
 import axios from 'axios';
 
-export default class GetCourses extends Component<[], {dataSource: any}> {
-  constructor(props: any) {
-    super(props);
-    this.state = {dataSource: []};
-  }
+const GetCourses = () => {
+  const [dataSource, setDataSource] = useState([]);
 
-  async componentDidMount() {
-    fetch('https://52ba-92-253-117-0.ngrok-free.app/api/Course')
+  useEffect(() => {
+    fetch('https://50cf-92-253-117-0.ngrok-free.app/api/Course')
       .then(response => response.json())
       .then(responseJson => {
-        this.setState({dataSource: responseJson});
+        setDataSource(responseJson);
       })
       .catch(error => console.log(error));
-  }
+  }, []);
 
-  handleDelete = id => {
+  const handleDelete = id => {
     axios
       .delete(
-        `https://52ba-92-253-117-0.ngrok-free.app/api/Course/DeleteCourse/${id}`,
+        `https://50cf-92-253-117-0.ngrok-free.app/api/Course/DeleteCourse/${id}`,
       )
       .then(() => {
         alert('Course Deleted Successfully');
@@ -30,46 +27,44 @@ export default class GetCourses extends Component<[], {dataSource: any}> {
       .catch(err => console.log(err));
   };
 
-  render() {
-    return (
-      <Provider>
-        <Appbar.Header>
-          <Appbar.Content title="Get All Courses" subtitle="LMS" />
-        </Appbar.Header>
-        <View style={styles.container}>
-          <FlatList
-            data={this.state.dataSource}
-            renderItem={({item}) => (
-              <Card style={styles.card}>
-                <Card.Content>
-                  <View style={styles.cardContent}>
-                    <View style={styles.cardContentLeft}>
-                      <Text style={styles.cardText}>
-                        <Text style={styles.label}>Course Id : </Text>
-                        {item.courseid}
-                      </Text>
-                      <Text style={styles.cardText}>
-                        <Text style={styles.label}>Course Name : </Text>
-                        {item.coursename}
-                      </Text>
-                    </View>
-                    <View style={styles.cardContentRight}>
-                      <Button
-                        color="red"
-                        title="x"
-                        onPress={() => this.handleDelete(item.courseid)}
-                      />
-                    </View>
+  return (
+    <Provider>
+      <Appbar.Header>
+        <Appbar.Content title="Get All Courses" subtitle="LMS" />
+      </Appbar.Header>
+      <View style={styles.container}>
+        <FlatList
+          data={dataSource}
+          renderItem={({ item }) => (
+            <Card style={styles.card}>
+              <Card.Content>
+                <View style={styles.cardContent}>
+                  <View style={styles.cardContentLeft}>
+                    <Text style={styles.cardText}>
+                      <Text style={styles.label}>Course Id : </Text>
+                      {item.courseid}
+                    </Text>
+                    <Text style={styles.cardText}>
+                      <Text style={styles.label}>Course Name : </Text>
+                      {item.coursename}
+                    </Text>
                   </View>
-                </Card.Content>
-              </Card>
-            )}
-          />
-        </View>
-      </Provider>
-    );
-  }
-}
+                  <View style={styles.cardContentRight}>
+                    <Button color="red"
+                      title="X"
+                      onPress={() => handleDelete(item.courseid)}
+                    />
+                  </View>
+                </View>
+              </Card.Content>
+            </Card>
+          )}
+          keyExtractor={item => item.id}
+        />
+      </View>
+    </Provider>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -97,3 +92,4 @@ const styles = StyleSheet.create({
     color: 'black',
   },
 });
+export default GetCourses;
