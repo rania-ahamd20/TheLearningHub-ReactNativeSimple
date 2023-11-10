@@ -98,7 +98,7 @@ const Login = ({ navigation }: any) => {
             bottom: 20,
             fontWeight: '500',
             margin: 20,
-          }}>
+          }} onPress={() => navigation.navigate('Forget')}>
           Forgot password?
         </Text>
       </View>
@@ -110,7 +110,7 @@ const Login = ({ navigation }: any) => {
       <View style={styles.register}>
         <Text style={styles.register}>
           Don't have an account?{'   '}
-          <Text style={{ color: '#00ADEE', fontWeight: 'bold' }}>Register</Text>
+          <Text style={{ color: '#00ADEE', fontWeight: 'bold' }} onPress={() => navigation.navigate('Register')}>Register</Text>
         </Text>
       </View>
     </View>

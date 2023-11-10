@@ -10,12 +10,16 @@ import MainPage from './Screens/MainPage';
 import UpdateCourse from './Screens/UpdateCourse';
 import login from './Screens/login';
 import Course from './Screens/Course';
+import Forget from './Screens/Forget';
+import Register from './Screens/Register';
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login Page" component={login} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Forget" component={Forget} />
         <Stack.Screen name="Course" component={Course} />
         <Stack.Screen name="MainPage" component={MainPage} />
         <Stack.Screen
