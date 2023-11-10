@@ -1,14 +1,22 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 import {Card} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const Course = () => {
+const Course = ({ navigation }: any) => {
+
+  const handleLogout = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Login Page' }],
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Card >
-        <Card.Content>
+        <Card.Content style={styles.content}>
           <Icon name="laptop-mac" size={100} style={styles.icon} />
           <Text style={styles.title}>React Native Course</Text>
           <Text >
@@ -18,6 +26,7 @@ const Course = () => {
             aliquip ex ea commodo consequat.{' '}
           </Text>
         </Card.Content>
+        <Button color="black" title="Logout" icon="logout" mode="contained" onPress={handleLogout} style={styles.logoutButton}/>
       </Card>
     </View>
   );
@@ -30,32 +39,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f0f0f0',
   },
-  lightCard: {
-    width: '80%',
-    padding: 16,
-    borderRadius: 10,
-    backgroundColor: 'white',
-  },
-  darkCard: {
-    width: '80%',
-    padding: 16,
-    borderRadius: 10,
-    backgroundColor: 'black',
-  },
-  lightText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 10,
-    color: 'black',
-  },
-  darkText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 10,
-    color: 'white',
-  },
   icon: {
     alignSelf: 'center',
     color: 'black',
@@ -67,6 +50,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     color: 'black',
   },
+  content:{paddingBottom: 40},
+
 });
 
 export default Course;

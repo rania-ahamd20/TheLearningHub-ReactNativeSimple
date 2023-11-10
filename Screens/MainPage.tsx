@@ -3,6 +3,13 @@
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 const MainPage = ({navigation}: any) => {
+  const handleLogout = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Login Page' }],
+    });
+  };
+  
   return (
     <View style={styles.container}>
       <Text style={{fontSize: 30, textAlign: 'center'}}>
@@ -11,18 +18,15 @@ const MainPage = ({navigation}: any) => {
       <TouchableOpacity
         style={styles.buttonStyle}
         onPress={() => navigation.navigate('GetCourses')}>
-        <Text style={styles.texts}>View & Delete Courses</Text>
+        <Text style={styles.texts}>Manange Courses</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.buttonStyle}
         onPress={() => navigation.navigate('CreateCourse')}>
         <Text style={styles.texts}>Create Course</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.buttonStyle}
-        onPress={() => navigation.navigate('UpdateCourse')}>
-
-        <Text style={styles.texts}>Update Course</Text>
+      <TouchableOpacity style={styles.buttonStyle} onPress={handleLogout}>
+        <Text style={styles.text2}>Logout</Text>
       </TouchableOpacity>
     </View>
   );
@@ -35,6 +39,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   texts: {color: 'black', fontSize: 16},
+  text2: {color: 'red', fontSize: 16},
   buttonStyle: {
     alignItems: 'center',
     textAlign: 'center',

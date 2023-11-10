@@ -31,7 +31,7 @@ const Login = ({ navigation }: any) => {
     ]);
   }, []);
 
-  (globalThis as any).url = 'https://2f1b-92-253-117-0.ngrok-free.app/api';
+  (globalThis as any).url = 'https://380f-92-253-117-0.ngrok-free.app/api';
   let token: any;
 
   const CheckValidation = async () => {
@@ -52,11 +52,17 @@ const Login = ({ navigation }: any) => {
       console.log(token.username);
       if (token.roleid === '2') {
         console.log(token);
-        navigation.navigate('MainPage');
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'MainPage' }],
+        });
       } else if (token.roleid === '1') {
         console.log(token);
         (globalThis as any).name = token.name;
-        navigation.navigate('Course');
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Course' }],
+        });
       } else {
         Alert.alert('Username or password is incorrect!!');
       }
@@ -88,8 +94,8 @@ const Login = ({ navigation }: any) => {
         <Text
           style={{
             color: '#00ADEE',
-            left: 70,
-            bottom: 40,
+            left: 80,
+            bottom: 20,
             fontWeight: '500',
             margin: 20,
           }}>
@@ -121,7 +127,7 @@ const styles = StyleSheet.create({
     marginBottom: 80,
   },
   register: {
-    top: 40,
+    top: 20,
     left: 40,
     fontWeight: 'bold',
     fontSize: 16,

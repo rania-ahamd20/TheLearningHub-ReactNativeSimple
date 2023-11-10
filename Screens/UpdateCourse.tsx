@@ -7,7 +7,7 @@ const UpdateCourse = ({navigation}: any) => {
   const handleUpdate = () => {
     axios
       .put(
-        ' https://2f1b-92-253-117-0.ngrok-free.app/api/Course/Update',
+        'https://380f-92-253-117-0.ngrok-free.app/api/Course/Update',
         {
           courseid: id,
           coursename: name,
